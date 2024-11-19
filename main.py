@@ -27,7 +27,7 @@ def suy_dien_tien(facts, goal):
         if used:  # Nếu đã áp dụng luật, quay lại xét từ đầu
             continue
         break  # Không có luật nào mới được áp dụng
-    steps.append(f"Muc tieu '{goal}' khong dat duoc.")
+    steps.append(f"Khong tim thay quy tac phu hop de suy dien tu {', '.join(facts)} sang {goal}")
     return steps
 
 def select_rule(facts, rules):
@@ -38,8 +38,8 @@ def select_rule(facts, rules):
 
     for rule in rules:
         # Kiểm tra nếu tất cả điều kiện của rule đều có trong facts
-        if set(rule["if"]).issubset(facts):
-            applicable_rules.append(rule)
+        # if set(rule["if"]).issubset(facts):
+        applicable_rules.append(rule)
 
     # Ưu tiên quy tắc có ít điều kiện hơn
     applicable_rules.sort(key=lambda r: len(r["if"]))
@@ -54,7 +54,7 @@ def suy_dien_lui(facts, goal):
 
     while queue:
         cur_goal = queue.pop(0)
-
+        
         if cur_goal in checked_goals:
             continue
 
@@ -73,7 +73,8 @@ def suy_dien_lui(facts, goal):
             best_rule = select_rule(inferred, rule_list)
 
         if not best_rule:
-            print(f"Khong tim thay quy tac phu hop de suy dien tu {', '.join(facts)} sang {goal}")
+            steps.clear()
+            steps.append(f"Khong tim thay quy tac phu hop de suy dien tu {', '.join(facts)} sang {goal}")
             break
 
         for condition in best_rule["if"]:
