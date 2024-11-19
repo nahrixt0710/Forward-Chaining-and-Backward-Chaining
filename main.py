@@ -1,7 +1,7 @@
 import json
 
 # Đọc cơ sở tri thức từ file JSON
-with open("cstt1.json", "r") as file:
+with open("cstt3.json", "r") as file:
     knowledge_base = json.load(file)
 
 def suy_dien_tien(facts, goal):
@@ -27,6 +27,7 @@ def suy_dien_tien(facts, goal):
         if used:  # Nếu đã áp dụng luật, quay lại xét từ đầu
             continue
         break  # Không có luật nào mới được áp dụng
+    steps.clear()
     steps.append(f"Khong tim thay quy tac phu hop de suy dien tu {', '.join(facts)} sang {goal}")
     return steps
 
