@@ -51,7 +51,6 @@ def suy_dien_lui(facts, goal):
     checked_goals = set()
     inferred = set(facts)
     steps = [] 
-    done = False
 
     while queue:
         cur_goal = queue.pop(0)
@@ -72,6 +71,10 @@ def suy_dien_lui(facts, goal):
 
         if len(rule_list) > 1:
             best_rule = select_rule(inferred, rule_list)
+
+        if not best_rule:
+            print(f"Khong tim thay quy tac phu hop de suy dien tu {', '.join(facts)} sang {goal}")
+            break
 
         for condition in best_rule["if"]:
             if condition not in checked_goals and condition not in inferred:
