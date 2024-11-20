@@ -13,7 +13,7 @@ def suy_dien_tien(facts, goal):
         if goal in inferred:
             # steps.append(f"Muc tieu '{goal}' da dat duoc.")
             return steps
-        used = False  # Kiểm tra xem có áp dụng luật nào không
+        is_used = False  # Kiểm tra xem có áp dụng luật nào không
         for rule in knowledge_base["rules"]:
             if all(condition in inferred for condition in rule["if"]):
                 # if rule["then"] not in inferred:  # Tránh áp dụng lặp lại luật
@@ -23,9 +23,9 @@ def suy_dien_tien(facts, goal):
                         f"{' ∧ '.join(rule['if'])} → {rule['then']} (theo {rule['id']}) {list(inferred)}"
                     )
                     visited_rules.add(rule["id"])
-                    used = True
+                    is_used = True
                     break  # Sau khi áp dụng luật, quay lại từ luật đầu tiên
-        if used:  # Nếu đã áp dụng luật, quay lại xét từ đầu
+        if is_used:  # Nếu đã áp dụng luật, quay lại xét từ đầu
             continue
         break  # Không có luật nào mới được áp dụng
     steps.clear()
