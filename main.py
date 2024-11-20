@@ -1,8 +1,9 @@
 import json
 
 # Đọc cơ sở tri thức từ file JSON
-with open("cstt3.json", "r") as file:
+with open("cstt1.json", "r") as file:
     knowledge_base = json.load(file)
+
 
 def suy_dien_tien(facts, goal):
     inferred = set(facts)
@@ -28,34 +29,56 @@ def suy_dien_tien(facts, goal):
             continue
         break  # Không có luật nào mới được áp dụng
     steps.clear()
-    steps.append(f"Khong tim thay quy tac phu hop de suy dien tu {', '.join(facts)} sang {goal}")
+    steps.append(
+        f"Khong tim thay quy tac phu hop de suy dien tu {', '.join(facts)} sang {goal}"
+    )
     return steps
+
+
+# def select_rule(facts, rules):
+#     """
+#     Chọn quy tắc phù hợp nhất để áp dụng dựa trên tập facts hiện tại.
+#     """
+#     applicable_rules = []
+
+#     for rule in rules:
+#         # Kiểm tra nếu tất cả điều kiện của rule đều có trong facts
+#         # if set(rule["if"]).issubset(facts):
+#         applicable_rules.append(rule)
+
+#     # Ưu tiên quy tắc có ít điều kiện hơn
+#     applicable_rules.sort(key=lambda r: len(r["if"]))
+
+#     return applicable_rules[0] if applicable_rules else None
+
 
 def select_rule(facts, rules):
     """
-    Chọn quy tắc phù hợp nhất để áp dụng dựa trên tập facts hiện tại.
+    Chọn quy tắc phù hợp nhất dựa trên số điều kiện cần tìm (không thuộc facts).
     """
     applicable_rules = []
 
     for rule in rules:
-        # Kiểm tra nếu tất cả điều kiện của rule đều có trong facts
-        # if set(rule["if"]).issubset(facts):
-        applicable_rules.append(rule)
+        # Nếu quy tắc có ít nhất một điều kiện trong facts, coi là applicable
+        if set(rule["if"]) & set(facts):
+            applicable_rules.append(rule)
 
-    # Ưu tiên quy tắc có ít điều kiện hơn
-    applicable_rules.sort(key=lambda r: len(r["if"]))
+    # Sắp xếp theo số điều kiện cần tìm (ít điều kiện cần tìm nhất được ưu tiên)
+    applicable_rules.sort(key=lambda r: len(set(r["if"]) - set(facts)))
 
+    # Trả về quy tắc phù hợp nhất hoặc None nếu không có
     return applicable_rules[0] if applicable_rules else None
+
 
 def suy_dien_lui(facts, goal):
     queue = [goal]
     checked_goals = set()
     inferred = set(facts)
-    steps = [] 
+    steps = []
 
     while queue:
         cur_goal = queue.pop(0)
-        
+
         if cur_goal in checked_goals:
             continue
 
@@ -75,7 +98,9 @@ def suy_dien_lui(facts, goal):
 
         if not best_rule:
             steps.clear()
-            steps.append(f"Khong tim thay quy tac phu hop de suy dien tu {', '.join(facts)} sang {goal}")
+            steps.append(
+                f"Khong tim thay quy tac phu hop de suy dien tu {', '.join(facts)} sang {goal}"
+            )
             break
 
         for condition in best_rule["if"]:
@@ -86,24 +111,25 @@ def suy_dien_lui(facts, goal):
             f"{' ∧ '.join(best_rule['if'])} → {best_rule['then']} (theo {best_rule['id']})"
         )
         checked_goals.add(cur_goal)
-            
+
     return steps
+
 
 # Hàm chính để nhập dữ liệu và chạy thuật toán
 if __name__ == "__main__":
     # Nhập facts ban đầu
     facts = input("Nhap gia thiet (cach nhau boi dau phay): ").strip().split(",")
     facts = [fact.strip() for fact in facts]
-    
+
     # Nhập goal
     goal = input("Nhap muc tieu can tim: ").strip()
-    
+
     # Chạy suy diễn tiến
     print("\nSuy dien tien...")
     forward_steps = suy_dien_tien(facts, goal)
     for i, step in enumerate(forward_steps, 1):
         print(f"Step {i}: {step}")
-    
+
     # Chạy suy diễn lùi
     print("\nSuy dien lui...")
     backward_steps = suy_dien_lui(facts, goal)
