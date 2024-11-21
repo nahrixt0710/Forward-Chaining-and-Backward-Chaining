@@ -1,0 +1,50 @@
+{
+  "owner": ["nhutanh2004", "AkhongloiChin"],
+  "rules": [
+    {
+      "id": "r1",
+      "if": ["A", "D"],
+      "then": "E"
+    },
+    {
+      "id": "r2",
+      "if": ["B", "E"],
+      "then": "F"
+    },
+    {
+      "id": "r3",
+      "if": ["F", "G"],
+      "then": "H"
+    },
+    {
+      "id": "r4",
+      "if": ["D", "F"],
+      "then": "B"
+    },
+    {
+      "id": "r5",
+      "if": ["H", "K"],
+      "then": "G"
+    },
+    {
+      "id": "r6",
+      "if": ["E", "G"],
+      "then": "C"
+    },
+    {
+      "id": "r7",
+      "if": ["B", "H"],
+      "then": "K"
+    },
+    {
+      "id": "r8",
+      "if": ["C", "E"],
+      "then": "D"
+    },
+    {
+      "id": "r9",
+      "if": ["K", "E"],
+      "then": "A"
+    }
+  ]
+}
