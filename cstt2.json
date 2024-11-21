@@ -1,10 +1,10 @@
 {
-    "rules": [
-        {"id": "r1", "if": ["A", "B", "C"], "then": "E"},
-        {"id": "r2", "if": ["D"], "then": "G"},
-        {"id": "r3", "if": ["G", "H"], "then": "K"},
-        {"id": "r4", "if": ["E", "K"], "then": "B"},
-        {"id": "r5", "if": ["F", "G"], "then": "A"},
-        {"id": "r6", "if": ["A", "D", "F"], "then": "H"}
-    ]
+  "rules": [
+    { "id": "r1", "if": ["A", "B", "C"], "then": "E" },
+    { "id": "r2", "if": ["D"], "then": "G" },
+    { "id": "r3", "if": ["G", "H"], "then": "K" },
+    { "id": "r4", "if": ["E", "K"], "then": "B" },
+    { "id": "r5", "if": ["F", "G"], "then": "A" },
+    { "id": "r6", "if": ["A", "D", "F"], "then": "H" }
+  ]
 }

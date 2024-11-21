@@ -1,9 +1,5 @@
 import json
 
-# Đọc cơ sở tri thức từ file JSON
-with open("cstt1.json", "r") as file:
-    knowledge_base = json.load(file)
-
 
 def suy_dien_tien(facts, goal):
     inferred = set(facts)
@@ -114,6 +110,10 @@ def suy_dien_lui(facts, goal):
 
     return steps
 
+
+# Đọc cơ sở tri thức từ file JSON
+with open("cstt2-gbaonr.json", "r") as file:
+    knowledge_base = json.load(file)
 
 # Hàm chính để nhập dữ liệu và chạy thuật toán
 if __name__ == "__main__":
