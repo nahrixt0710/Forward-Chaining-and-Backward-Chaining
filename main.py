@@ -17,7 +17,7 @@ def suy_dien_tien(facts, goal):
                 if rule["id"] not in visited_rules_id:
                     inferred.add(rule["then"])
                     steps.append(
-                        f"{' ∧ '.join(rule['if'])} → {rule['then']} (theo {rule['id']}) {list(inferred)}"
+                        f"{' ∧ '.join(rule['if'])} → {rule['then']} (theo {rule['id']}) \n\t{list(inferred)}\n"
                     )
                     visited_rules_id.append(rule["id"])
                     visited_rules.append(rule)
@@ -74,11 +74,13 @@ def suy_dien_lui(facts, goal, visited_rules):
         checked_goals.add(cur_goal)
         rule_used_id.append(best_rule["id"])
 
+    had = set(facts)
     for rule in visited_rules:
         if rule["id"] in rule_used_id:
             steps.append(
-                f"{' ∧ '.join(rule['if'])} → {rule['then']} (theo {rule['id']})"
+                f"{' ∧ '.join(rule['if'])} → {rule['then']} (theo {rule['id']}) \n\t{had.union(rule["then"])}\n"
             )
+            had = had.union(rule["then"])
 
     return steps
 
@@ -98,7 +100,7 @@ def baodong(rules, input):
 
 
 # Đọc cơ sở tri thức từ file JSON
-with open("cstt2.json", "r") as file:
+with open("cstt3.json", "r") as file:
     knowledge_base = json.load(file)
 
 # Hàm chính để nhập dữ liệu và chạy thuật toán
@@ -112,6 +114,7 @@ if __name__ == "__main__":
 
     print("\nTim kiem bao dong...")
     baodong_result = baodong(knowledge_base["rules"], facts)
+
     print("Bao dong:", baodong_result)
     if goal in baodong_result:
         # Chạy suy diễn tiến
