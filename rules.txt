@@ -1,0 +1,9 @@
+r1: A ∧ B → C  
+r2: C ∧ D → E  
+r3: B  → F  
+r4: E → H  
+r5: E ∧ H → G  
+r6: G ∧ F → K  
+r7: A ∧ K → D  
+r8: B ∧ E → A  
+r9: D ∧ H → K  
