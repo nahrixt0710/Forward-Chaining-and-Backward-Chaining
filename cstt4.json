@@ -1,40 +1,36 @@
 {
   "owner": ["nhutanh2004", "AkhongloiChin"],
   "rules": [
-    {
-      "id": "r1",
-      "if": ["A", "D"],
-      "then": "E"
-    },
+    { "id": "r1", "if": ["A"], "then": "E" },
     {
       "id": "r2",
-      "if": ["B", "E"],
+      "if": ["B"],
       "then": "F"
     },
     {
       "id": "r3",
-      "if": ["F", "G"],
+      "if": ["C"],
       "then": "H"
     },
     {
       "id": "r4",
-      "if": ["D", "F"],
-      "then": "B"
-    },
-    {
-      "id": "r5",
-      "if": ["H", "K"],
+      "if": ["D", "H"],
       "then": "G"
     },
     {
+      "id": "r5",
+      "if": ["E", "F"],
+      "then": "K"
+    },
+    {
       "id": "r6",
-      "if": ["E", "G"],
-      "then": "C"
+      "if": ["E", "K"],
+      "then": "B"
     },
     {
       "id": "r7",
       "if": ["B", "H"],
-      "then": "K"
+      "then": "C"
     },
     {
       "id": "r8",
@@ -43,8 +39,16 @@
     },
     {
       "id": "r9",
-      "if": ["K", "E"],
+      "if": ["G", "K"],
       "then": "A"
     }
-  ]
+  ],
+  "problem_1": {
+    "facts": ["A", "B", "D"],
+    "goal": ["F"]
+  },
+  "problem_2": {
+    "facts": ["G", "K", "H"],
+    "goal": ["C"]
+  }
 }

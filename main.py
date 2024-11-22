@@ -104,7 +104,7 @@ def baodong(rules, input):
 
 
 # Đọc cơ sở tri thức từ file JSON
-with open("cstt3.json", "r") as file:
+with open("cstt4.json", "r") as file:
     knowledge_base = json.load(file)
 
 # Hàm chính để nhập dữ liệu và chạy thuật toán
