@@ -59,7 +59,11 @@ def suy_dien_lui(facts, goal, visited_rules):
 
         rule_list = []
         best_rule = {}
-        for rule in knowledge_base["rules"]:
+        # for rule in knowledge_base["rules"]:
+        #     if rule["then"] == cur_goal and rule["then"] not in checked_goals:
+        #         rule_list.append(rule)
+        #         best_rule = rule
+        for rule in visited_rules:
             if rule["then"] == cur_goal and rule["then"] not in checked_goals:
                 rule_list.append(rule)
                 best_rule = rule
