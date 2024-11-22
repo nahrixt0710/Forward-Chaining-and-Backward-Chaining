@@ -1,50 +1,78 @@
-{
-  "owner": ["nhutanh2004", "AkhongloiChin"],
-  "rules": [
-    {
-      "id": "r1",
-      "if": ["A", "D"],
-      "then": "E"
+{   
+    "owner": ["nhutanh2004", "AkhongloiChin"],
+    "rules": [
+        {"id": "r1","if": ["A"],
+            "then": "E"
+        },
+        {
+            "id": "r2",
+            "if": [
+                "B"
+            ],
+            "then": "F"
+        },
+        {
+            "id": "r3",
+            "if": [
+                "C"
+            ],
+            "then": "H"
+        },
+        {
+            "id": "r4",
+            "if": [
+                "D",
+                "H"
+            ],
+            "then": "G"
+        },
+        {
+            "id": "r5",
+            "if": [
+                "E",
+                "F"
+            ],
+            "then": "K"
+        },
+        {
+            "id": "r6",
+            "if": [
+                "E",
+                "K"
+            ],
+            "then": "B"
+        },
+        {
+            "id": "r7",
+            "if": [
+                "B",
+                "H"
+            ],
+            "then": "C"
+        },
+        {
+            "id": "r8",
+            "if": [
+                "C",
+                "E"
+            ],
+            "then": "D"
+        },
+        {
+            "id": "r9",
+            "if": [
+                "G",
+                "K"
+            ],
+            "then": "A"
+        }
+    ],
+    "problem_1": {
+    "facts": ["A", "B", "C"],
+    "goal": ["G"]
     },
-    {
-      "id": "r2",
-      "if": ["B", "E"],
-      "then": "F"
-    },
-    {
-      "id": "r3",
-      "if": ["F", "G"],
-      "then": "H"
-    },
-    {
-      "id": "r4",
-      "if": ["D", "F"],
-      "then": "B"
-    },
-    {
-      "id": "r5",
-      "if": ["H", "K"],
-      "then": "G"
-    },
-    {
-      "id": "r6",
-      "if": ["E", "G"],
-      "then": "C"
-    },
-    {
-      "id": "r7",
-      "if": ["B", "H"],
-      "then": "K"
-    },
-    {
-      "id": "r8",
-      "if": ["C", "E"],
-      "then": "D"
-    },
-    {
-      "id": "r9",
-      "if": ["K", "E"],
-      "then": "A"
+    "problem_2": {
+        "facts": ["G", "K", "H"],
+        "goal": ["C"]
     }
-  ]
 }

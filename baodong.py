@@ -47,7 +47,7 @@ def convert(path):
 
 # convert("rules.txt")
 
-with open("cstt2.json", "r", encoding="utf-8") as file:
+with open("cstt4.json", "r", encoding="utf-8") as file:
     knowledge_base = json.load(file)
 
 facts = input("Nhập các sự kiện ban đầu (cách nhau bởi dấu phẩy): ").strip().split(",")
