@@ -1,0 +1,18 @@
+{
+    "owner": "NguyenHoang",
+    "rules": [
+      { "id": "r1", "if": ["A", "B"], "then": "F" },
+      { "id": "r2", "if": ["F"], "then": "E" },
+      { "id": "r3", "if": ["G", "H"], "then": "K" },
+      { "id": "r4", "if": ["A", "F"], "then": "H" },
+      { "id": "r5", "if": ["C", "F"], "then": "I" },
+      { "id": "r6", "if": ["B", "E", "F"], "then": "C" },
+      { "id": "r7", "if": ["C", "G"], "then": "M" },
+      { "id": "r8", "if": ["D", "H", "I"], "then": "G" },
+      { "id": "r9", "if": ["C"], "then": "D" }
+    ],
+    "problem_1": {
+      "facts": ["A", "B"],
+      "goal": ["M"]
+    }
+  }
